@@ -1,26 +1,30 @@
-##Global model
+###Title: Covid-19 and the Aviation Industry
+##Authors: Liu, Anyu; Kim, Yoo Ri; O'Connell, Frankie
+##Last updated: 09-01-2021
+##Software: Stata 16.0
+
 ##Prabability matrix
 clear all
 
-import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w3.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w3.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w3.dta"
+import delimited C:\...\global_w3.csv, rowrange(2) 
+save "C:\...\w3.dta", replace
+use "C:\...\w3.dta"
 mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w3)
 
-import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w5.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w5.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w5.dta"
+import delimited C:\...\global_w5.csv, rowrange(2) 
+save "C:\...\w5.dta", replace
+use "C:\...\w5.dta"
 mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w5)
 
-import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w7.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w7.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w7.dta"
+import delimited C:\...\global_w7.csv, rowrange(2) 
+save "C:\...\w7.dta", replace
+use "C:\...\w7.dta"
 mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w7)
 
 
-import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.csv, clear
-save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.dta"
+import delimited C:\...\global.csv, clear
+save "C:\...\global.dta", replace
+use "C:\...\global.dta"
 gen lgdp=log(gdp)
 gen lbed=log(bed)
 gen ldensity=log(density)
