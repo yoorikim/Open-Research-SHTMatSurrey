@@ -1,0 +1,143 @@
+##Global model
+##Prabability matrix
+clear all
+
+import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w3.csv, rowrange(2) 
+save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w3.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w3.dta"
+mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w3)
+
+import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w5.csv, rowrange(2) 
+save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w5.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w5.dta"
+mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w5)
+
+import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global_w7.csv, rowrange(2) 
+save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w7.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\w7.dta"
+mkmat austria belgium bulgaria croatia cyprus czech denmark estonia finland france germany greece hungary iceland ireland italy latvia lithuania luxembourg malta netherlands norway poland portugal romania slovakia slovenia spain sweden switzerland uk,matrix(w7)
+
+
+import delimited C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.csv, clear
+save "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\COVID-Aviation\global.dta"
+gen lgdp=log(gdp)
+gen lbed=log(bed)
+gen ldensity=log(density)
+xtset country trend
+
+**********1st Stage
+xtreg total_l1 total19l1 lgdp 
+predict double totall1_hat
+gen total1_0=total_l1*lockdown
+gen total1_1=total_l1*(1-lockdown)
+gen totalh1_0=totall1_hat*lockdown
+gen totalh1_1=totall1_hat*(1-lockdown)
+
+xtreg total_l2 total19l2 lgdp 
+predict double totall2_hat
+gen total2_0=total_l2*lockdown
+gen total2_1=total_l2*(1-lockdown)
+gen totalh2_0=totall2_hat*lockdown
+gen totalh2_1=totall2_hat*(1-lockdown)
+
+xtreg total_l3 total19l3 lgdp 
+predict double totall3_hat
+gen total3_0=total_l3*lockdown
+gen total3_1=total_l3*(1-lockdown)
+gen totalh3_0=totall3_hat*lockdown
+gen totalh3_1=totall3_hat*(1-lockdown)
+
+xtreg total_l4 total19l4 lgdp 
+predict double totall4_hat
+gen total4_0=total_l4*lockdown
+gen total4_1=total_l4*(1-lockdown)
+gen totalh4_0=totall4_hat*lockdown
+gen totalh4_1=totall4_hat*(1-lockdown)
+
+xtreg total_l5 total19l5 lgdp 
+predict double totall5_hat
+gen total5_0=total_l5*lockdown
+gen total5_1=total_l5*(1-lockdown)
+gen totalh5_0=totall5_hat*lockdown
+gen totalh5_1=totall5_hat*(1-lockdown)
+
+xtreg total_l6 total19l6 lgdp 
+predict double totall6_hat
+gen total6_0=total_l6*lockdown
+gen total6_1=total_l6*(1-lockdown)
+gen totalh6_0=totall6_hat*lockdown
+gen totalh6_1=totall6_hat*(1-lockdown)
+
+xtreg total_l7 total19l7 lgdp 
+predict double totall7_hat
+gen total7_0=total_l7*lockdown
+gen total7_1=total_l7*(1-lockdown)
+gen totalh7_0=totall7_hat*lockdown
+gen totalh7_1=totall7_hat*(1-lockdown)
+
+xtreg total_l8 total19l8 lgdp 
+predict double totall8_hat
+gen total8_0=total_l8*lockdown
+gen total8_1=total_l8*(1-lockdown)
+gen totalh8_0=totall8_hat*lockdown
+gen totalh8_1=totall8_hat*(1-lockdown)
+
+xtreg total_l9 total19l9 lgdp 
+predict double totall9_hat
+gen total9_0=total_l9*lockdown
+gen total9_1=total_l9*(1-lockdown)
+gen totalh9_0=totall9_hat*lockdown
+gen totalh9_1=totall9_hat*(1-lockdown)
+
+xtreg total_l10 total19l10 lgdp 
+predict double totall10_hat
+gen total10_0=total_l10*lockdown
+gen total10_1=total_l10*(1-lockdown)
+gen totalh10_0=totall10_hat*lockdown
+gen totalh10_1=totall10_hat*(1-lockdown)
+
+xtreg total_l11 total19l11 lgdp 
+predict double totall11_hat
+gen total11_0=total_l11*lockdown
+gen total11_1=total_l11*(1-lockdown)
+gen totalh11_0=totall11_hat*lockdown
+gen totalh11_1=totall11_hat*(1-lockdown)
+
+xtreg total_l12 total19l12 lgdp 
+predict double totall12_hat
+gen total12_0=total_l12*lockdown
+gen total12_1=total_l12*(1-lockdown)
+gen totalh12_0=totall12_hat*lockdown
+gen totalh12_1=totall12_hat*(1-lockdown)
+
+xtreg total_l13 total19l13 lgdp 
+predict double totall13_hat
+gen total13_0=total_l13*lockdown
+gen total13_1=total_l13*(1-lockdown)
+gen totalh13_0=totall13_hat*lockdown
+gen totalh13_1=totall13_hat*(1-lockdown)
+
+xtreg total_l14 total19l14 lgdp
+predict double totall14_hat
+gen total14_0=total_l14*lockdown
+gen total14_1=total_l14*(1-lockdown)
+gen totalh14_0=totall14_hat*lockdown
+gen totalh14_1=totall14_hat*(1-lockdown)
+
+*******2nd Stage
+***IV_w7
+xsmle new_cases totalh1_0 totalh2_0 totalh3_0 totalh4_0 totalh5_0 totalh6_0 totalh7_0 totalh8_0 totalh9_0 totalh10_0 totalh11_0 totalh12_0 totalh13_0 totalh14_0 totalh1_1 totalh2_1 totalh3_1 totalh4_1 totalh5_1 totalh6_1 totalh7_1 totalh8_1 totalh9_1 totalh10_1 totalh11_1 totalh12_1 totalh13_1 totalh14_1 lgdp,re wmat(w7) model(sdm) effects
+
+
+xsmle new_cases totall1_hat totall2_hat totall3_hat totall4_hat totall5_hat totall6_hat totall7_hat totall8_hat totall9_hat totall10_hat totall11_hat totall12_hat totall13_hat totall14_hat lgdp lockdown,re wmat(w7) model(sdm) effects
+
+estat ic
+****over identification test
+predict double nc_hat
+gen rs=new_cases-nc_hat
+xsmle rs total19l1 total19l2 total19l3 total19l4 total19l5 total19l6 total19l7 total19l8 total19l9 total19l10 total19l11 total19l12 total19l13 total19l14 lgdp,re wmat(w7) model(sdm)
+
+***Non-IV_w3
+xsmle new_cases total1_0 total2_0 total3_0 total4_0 total5_0 total6_0 total7_0 total8_0 total9_0 total10_0 total11_0 total12_0 total13_0 total14_0 total1_1 total2_1 total3_1 total4_1 total5_1 total6_1 total7_1 total8_1 total9_1 total10_1 total11_1 total12_1 total13_1 total14_1 lgdp,re wmat(w7) model(sdm) effects
+estat ic
