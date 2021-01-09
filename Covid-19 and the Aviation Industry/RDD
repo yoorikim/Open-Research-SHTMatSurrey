@@ -1,0 +1,48 @@
+library(rddtools)
+library(rdrobust)
+
+
+data<-read.csv("C:/Users/al0045/Dropbox/Papers/COVID-Aviation/data20_ab.csv")
+data$lnTotal=log(1+data$Total)
+data$lnGDP=log(data$GDP)
+####Total
+rdplot(data$Total,data$trend,c=6,p=2,title="Panel A: All EU Destinations",x.label="Days",y.label="Flight Frequncy")
+Total<-rdd_data(y=data$Total,x=data$trend,covar=data$GDP,cutpoint=6)
+Total_bws<-rdd_bw_ik(Total)
+Total_np<-rdrobust(data$Total,data$trend,covs=data$GDP,c=6,p=2)
+Total_p<-rdd_reg_lm(rdd_object=Total,bw=Total_bws,covariates="data$GDP",order=2)
+summary(Total_np)
+summary(Total_p)
+dens_test(Total_p)
+plotSensi(Total_p,order=2)
+plotPlacebo(Total_p)
+
+
+####Top 5
+
+data_t5<-data[which(data$Top5==1),]
+rdplot(data_t5$Total,data_t5$trend,c=6,p=2,title="Panel B: Top 5 EU Destinations",x.label="Days",y.label="Flight Frequncy")
+Total_t5<-rdd_data(y=data_t5$Total,x=data_t5$trend,covar=data_t5$lnGDP,cutpoint=6)
+Totalt5_bws<-rdd_bw_ik(Total_t5)
+Totalt5_np<-rdrobust(data_t5$Total,data_t5$trend,covs=data_t5$GDP,c=6,p=2)
+Totalt5_p<-rdd_reg_lm(rdd_object=Total_t5,bw=Totalt5_bws,covariates="data_t5$GDP",order=2)
+summary(Totalt5_np)
+summary(Totalt5_p)
+dens_test(Totalt5_p)
+plotSensi(Totalt5_p)
+plotPlacebo(Totalt5_p)
+
+
+####Non Top 5
+
+data_nt5<-data[which(data$Top5==0),]
+rdplot(data_nt5$Total,data_nt5$trend,c=6,p=2,title="Panel C: Non-top 5 EU Destinations",x.label="Days",y.label="Flight Frequncy")
+Total_nt5<-rdd_data(y=data_nt5$Total,x=data_nt5$trend,covar=data_nt5$lnGDP,cutpoint=6)
+Totalnt5_bws<-rdd_bw_ik(Total_nt5)
+Totalnt5_np<-rdrobust(data_nt5$Total,data_nt5$trend,covs=data_nt5$GDP,c=6,p=2)
+Totalnt5_p<-rdd_reg_lm(rdd_object=Total_nt5,bw=Totalnt5_bws,covariates="data_nt5$GDP",order=2)
+summary(Totalnt5_np)
+summary(Totalnt5_p)
+dens_test(Totalnt5_p)
+plotSensi(Totalnt5_p)
+plotPlacebo(Totalnt5_p)
