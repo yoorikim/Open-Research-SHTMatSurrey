@@ -1,4 +1,8 @@
-##This is the code for the RDD analysis by R
+###Title: Covid-19 and the Aviation Industry
+##Authors: Liu, Anyu; Kim, Yoo Ri; O'Connell, Frankie
+##Last updated: 09-01-2021
+##Software: R 3.6
+
 library(rddtools)
 library(rdrobust)
 
