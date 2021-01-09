@@ -1,0 +1,110 @@
+import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data.csv, clear
+save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data1.dta", replace
+
+##Prabability matrix
+clear all
+import delimited C:\Users\al0045\Dropbox\Papers\COVID_Weibo\global_w.csv, rowrange(2) 
+save "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\w.dta", replace
+
+use "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\w.dta"
+mkmat shanghai yunnan inner_mengolia beijing jilin sichuan tianjin ningxia anhui shandong shanxi guangdong guangxi xinjing jinagsu jiangxi hebei henan zhejiang hainan hubei hunan gansu fujian tibet guizhou liaoning chongqing shananxi qinghai heilongjiang, matrix(w)
+
+use "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\data.dta"
+
+xtset id date
+gen lnts=log(1+weibo*sentimentscore)
+gen lntc=log(1+totalcases)
+gen lnpm25=log(pm25)
+gen lnpac=log(pac)
+gen lnpat=log(pat)
+gen lngdpp=log(gdpp)
+
+## Treatment: Hubei
+##Parellel trend test
+gen par=hubei*em_i*date
+xtreg lnts date em_i#hubei par lnpm25 lnpac lngdpp feb mar lny weekend,re
+xtreg lnts em_i em_ii em_iii hubei em_i#hubei lnpm25 lnpac lngdpp feb mar lny weekend,re
+
+xttest0
+## Treatment: Hubei and Neighbouring
+##Parellel trend test
+gen par=neib_hubei*em_i*date
+xtreg lnts date em_i#neib_hubei par lnpm25 lnpac lngdpp feb mar lny weekend,re
+xtreg lnts em_i em_ii em_iii neib_hubei em_i#neib_hubei lnpm25 lnpac lngdpp feb mar lny weekend,re
+xttest0
+## Treatment: Hubei and Top 3 destinations
+xtreg lnts em_i em_ii em_iii of3_h em_i#of3_h lnpm25 lnpac lngdpp feb mar lny weekend,re
+xttest0
+## Treatment: Hubei and Top 5 destinations
+xtreg lnts em_i em_ii em_iii of5_h em_i#of5_h lnpm25 lnpac lngdpp feb mar lny weekend,re
+xttest0
+## Treatment: Hubei and Top 7 destinations
+##Parellel trend test
+gen par=of7_h*em_i*date
+xtreg lnts date em_i#of7_h par lnpm25 lnpac lngdpp feb mar lny weekend,re
+xtreg lnts em_i em_ii em_iii of7_h em_i#of7_h lnpm25 lnpac lngdpp feb mar lny weekend,re
+xttest0
+## Treatment: Hubei and Top 9 destinations
+xtreg lnts em_i em_ii em_iii of9_h em_i#of9_h lnpm25 lnpac lngdpp feb mar lny weekend,re
+xttest0
+
+#####Sensitivity test
+xtreg lnts em_if20 em_ii em_iii hubei em_if20#hubei lnpm25 lnpac lngdpp feb mar lny weekend,re
+xtreg lnts em_if20 em_ii em_iii neib_hubei em_if20#neib_hubei lnpm25 lnpac lngdpp feb mar lny weekend,re
+xtreg lnts em_if20 em_ii em_iii of7_h em_if20#of7_h lnpm25 lnpac lngdpp feb mar lny weekend,re
+
+#####2019 vs 2020
+import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\Hubei1920.csv, clear
+save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\hubei1920.dta", replace
+xtset id date
+gen lnts=log(1+weibo*sentimentscore)
+gen lnnc=log(1+confirmednewcase)
+gen lnpm25=log(pm25)
+gen lnpac=log(pac)
+gen lnpat=log(pat)
+gen lngdpp=log(gdpp)
+gen par=year*em_i*trend
+xtgls lnts trend em_i#year par lnpm25 lnpac lngdpp feb mar lny weekend
+xtgls lnts em_i em_ii em_iii year em_i#year lnpm25 feb mar lny weekend
+
+##Global model
+##Prabability matrix
+clear all
+import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_w.csv, rowrange(2) 
+#spmat dta spm anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang, id(id) replace
+
+save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\w.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\w.dta"
+mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang,matrix(w)
+
+
+import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_wx.csv, rowrange(2) 
+save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\wx.dta", replace
+use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\wx.dta"
+mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang,matrix(wx)
+
+
+use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_w7.dta"
+mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jiangsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjiang yunnan zhejiang,matrix(wx)
+
+
+use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data1.dta"
+xtset id date
+gen lnts=log(1+weibo*sentimentscore)
+gen lnnc=log(1+confirmednewcase)
+gen lntd=log(1+totaldeath)
+gen lntc=log(1+totalcases)
+gen lnnc2=lnnc*lnnc
+gen lntc2=lntc*lntc
+gen lntd2=lntd*lntd
+gen lnpm25=log(pm25)
+gen lnpac=log(pac)
+gen lnpat=log(pat)
+gen lngdpp=log(gdpp)
+spreg ml lnts lntc lntc2 lnpm25 lnpac lngdpp feb mar lny weekend, id(id) dlmat(spm)
+
+xsmle lnts lntc lnpm25 lnpac lngdpp,wmat(wx) dmat(wx) model(sdm) durbin(ln  noconstant  effects  
+spreg ml lnts lntc lntc2 lnpm25 lnpac lngdpp feb mar lny weekend, id(id) dlmat(wm)
+test (rho)
+
+spregxt lnts lntc lnpm25 lnpac lngdpp feb mar lny weekend,nc(31) model(ols) re run(xtmle)  robust  lmspac lmauto lmhet lmnorm
