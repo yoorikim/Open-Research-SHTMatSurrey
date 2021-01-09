@@ -7,7 +7,7 @@ library(rddtools)
 library(rdrobust)
 
 
-data<-read.csv("C:/Users/al0045/Dropbox/Papers/COVID-Aviation/data20_ab.csv")
+data<-read.csv("C:/.../data20_ab.csv")
 data$lnTotal=log(1+data$Total)
 data$lnGDP=log(data$GDP)
 ####Total
