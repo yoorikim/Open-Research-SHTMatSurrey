@@ -1,23 +1,28 @@
+###Title: Visitor Flow SPillovers on Attraction in London
+##Authors: Liu, Anyu; Kim, Yoo Ri; Stienmetz, Jason; Chen, Yining
+##Last updated: 09-01-2021
+##Software: Stata v.15
+
 ###Model 1
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_13.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_13.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_15.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_15.dta", replace
+import delimited C:\...\data_13.csv, clear 
+save "C:\...\data_13.dta", replace
+import delimited C:\...\data_15.csv, clear 
+save "C:\...l\data_15.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w1_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w13.dta", replace
+import delimited C:\...\w1_3s.csv, rowrange(2) 
+save "C:\...\w13.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w1_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w15.dta", replace
+import delimited C:\...\w1_5s.csv, rowrange(2) 
+save "C:\...\w15.dta", replace
 
 ###Model_13
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w13.dta"
+use "C:\...\w13.dta"
 mkmat v1 v2 v3 v4, matrix(w13)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_13.dta"
+use "C:\...\data_13.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -31,9 +36,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w13) model(sar) noconstan
 
 ###Model_15
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w15.dta"
+use "C:\...\w15.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w15)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_15.dta"
+use "C:\...\data_15.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -47,24 +52,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w15) model(sar) noconstant  effe
 
 ###Model 2
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_23.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_23.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_25.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_25.dta", replace
+import delimited C:\...\data_23.csv, clear 
+save "C:\...\data_23.dta", replace
+import delimited C:\...\data_25.csv, clear 
+save "C:\...\data_25.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w2_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w23.dta", replace
+import delimited C:\...\w2_3s.csv, rowrange(2) 
+save "C:\...\w23.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w2_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w25.dta", replace
+import delimited C:\...\w2_5s.csv, rowrange(2) 
+save "C:\...\w25.dta", replace
 
 ###Model_23
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w23.dta"
+use "C:\...\w23.dta"
 mkmat v1 v2 v3 v4, matrix(w23)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_23.dta"
+use "C:\...\data_23.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -78,9 +83,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w23) model(sar) noconstan
 
 Model_25
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w25.dta"
+use "C:\...\w25.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w25)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_25.dta"
+use "C:\...\data_25.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -94,24 +99,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w25) model(sar) noconstant  effe
 
 ###Model 4
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_43.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_43.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_45.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_45.dta", replace
+import delimited C:\...\data_43.csv, clear 
+save "C:\...\data_43.dta", replace
+import delimited C:\...\data_45.csv, clear 
+save "C:\...\data_45.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w4_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w43.dta", replace
+import delimited C:\...\w4_3s.csv, rowrange(2) 
+save "C:\...\w43.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w4_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w45.dta", replace
+import delimited C:\...\w4_5s.csv, rowrange(2) 
+save "C:\...\w45.dta", replace
 
 ###Mode_43
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w43.dta"
+use "C:\...\w43.dta"
 mkmat v1 v2 v3 v4, matrix(w43)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_43.dta"
+use "C:\...\data_43.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -125,9 +130,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w43) model(sar) noconstan
 
 ###Model_45
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w45.dta"
+use "C:\...\w45.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w45)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_45.dta"
+use "C:\...\data_45.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -141,24 +146,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w45) model(sar) noconstant  effe
 
 ###Model 5
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_53.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_53.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_55.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_55.dta", replace
+import delimited C:\...\data_53.csv, clear 
+save "C:\...\data_53.dta", replace
+import delimited C:\...\data_55.csv, clear 
+save "C:\...\data_55.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w5_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w53.dta", replace
+import delimited C:\...\w5_3s.csv, rowrange(2) 
+save "C:\...\w53.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w5_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w55.dta", replace
+import delimited C:\...\w5_5s.csv, rowrange(2) 
+save "C:\...\w55.dta", replace
 
 ###Model_53
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w53.dta"
+use "C:\...\w53.dta"
 mkmat v1 v2 v3 v4, matrix(w53)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_53.dta"
+use "C:\...\data_53.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -172,9 +177,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w53) model(sar) noconstan
 
 ###Model_55
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w55.dta"
+use "C:\...\w55.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w55)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_55.dta"
+use "C:\...\data_55.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -188,24 +193,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w55) model(sar) noconstant  effe
 
 ###Model 6
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_63.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_63.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_65.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_65.dta", replace
+import delimited C:\...\data_63.csv, clear 
+save "C:\...\data_63.dta", replace
+import delimited C:\...\data_65.csv, clear 
+save "C:\...\data_65.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w6_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w63.dta", replace
+import delimited C:\...\w6_3s.csv, rowrange(2) 
+save "C:\...\w63.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w6_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w65.dta", replace
+import delimited C:\...\w6_5s.csv, rowrange(2) 
+save "C:\...\w65.dta", replace
 
 ###Model_63
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w63.dta"
+use "C:\...\w63.dta"
 mkmat v1 v2 v3 v4, matrix(w63)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_63.dta"
+use "C:\...\data_63.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -219,9 +224,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w63) model(sar) noconstan
 
 ###Model_65
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w65.dta"
+use "C:\...\w65.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w65)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_65.dta"
+use "C:\...\data_65.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -235,24 +240,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w65) model(sar) noconstant  effe
 
 ###Model 7
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_73.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_73.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_75.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_75.dta", replace
+import delimited C:\...\data_73.csv, clear 
+save "C:\...\data_73.dta", replace
+import delimited C:\...\data_75.csv, clear 
+save "C:\...\data_75.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w7_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w73.dta", replace
+import delimited C:\...\w7_3s.csv, rowrange(2) 
+save "C:\...\w73.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w7_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w75.dta", replace
+import delimited C:\..\w7_5s.csv, rowrange(2) 
+save "C:\...\w75.dta", replace
 
 ###Model_73
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w73.dta"
+use "C:\...\w73.dta"
 mkmat v1 v2 v3 v4, matrix(w73)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_73.dta"
+use "C:\...\data_73.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -266,9 +271,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w73) model(sar) noconstan
 
 ###Model_15
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w75.dta"
+use "C:\...\w75.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w75)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_75.dta"
+use "C:\...\data_75.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -282,24 +287,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w75) model(sar) noconstant  effe
 
 ###Model 8
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_84.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_84.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_86.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_86.dta", replace
+import delimited C:\...\data_84.csv, clear 
+save "C:\U...\data_84.dta", replace
+import delimited C:\...\data_86.csv, clear 
+save "C:\...\data_86.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w8_4s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w84.dta", replace
+import delimited C:\...\w8_4s.csv, rowrange(2) 
+save "C:\...\w84.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w8_6s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w86.dta", replace
+import delimited C:\...\w8_6s.csv, rowrange(2) 
+save "C:\...\w86.dta", replace
 
 ###Model_84
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w84.dta"
+use "C:\...\w84.dta"
 mkmat v1 v2 v3 v4 v5, matrix(w84)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_84.dta"
+use "C:\...\data_84.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -313,9 +318,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w84) model(sar) noconstan
 
 ###Model_86
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w86.dta"
+use "C:\..\w86.dta"
 mkmat v1 v2 v3 v4 v5 v6 v7, matrix(w86)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_86.dta"
+use "C:\...\data_86.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -329,24 +334,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w86) model(sar) noconstant  effe
 
 ###Model 9
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_93.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_93.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_95.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_95.dta", replace
+import delimited C:\...\data_93.csv, clear 
+save "C:\...\data_93.dta", replace
+import delimited C:\...\data_95.csv, clear 
+save "C:\...\data_95.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w9_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w93.dta", replace
+import delimited C:\...\w9_3s.csv, rowrange(2) 
+save "C:\...\w93.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w9_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w95.dta", replace
+import delimited C:\...\w9_5s.csv, rowrange(2) 
+save "C:\...w95.dta", replace
 
 ###Model_93
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w93.dta"
+use "C:\...\w93.dta"
 mkmat v1 v2 v3 v4, matrix(w93)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_93.dta"
+use "C:\...\data_93.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -360,9 +365,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w93) model(sar) noconstan
 
 ###Model_95
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w95.dta"
+use "C:\...\w95.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w95)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_95.dta"
+use "C:\...\data_95.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -376,24 +381,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w95) model(sar) noconstant  effe
 
 ###Model 10
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_103.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_103.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_105.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_105.dta", replace
+import delimited C:\...\data_103.csv, clear 
+save "C:\...\data_103.dta", replace
+import delimited C:\...\data_105.csv, clear 
+save "C:\...\data_105.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w10_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w103.dta", replace
+import delimited C:\...\w10_3s.csv, rowrange(2) 
+save "C:\...\w103.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w10_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w105.dta", replace
+import delimited C:\...\w10_5s.csv, rowrange(2) 
+save "C:\...\w105.dta", replace
 
 ###Model_103
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w103.dta"
+use "C:...\w103.dta"
 mkmat v1 v2 v3 v4, matrix(w103)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_103.dta"
+use "C:\...\data_103.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -407,9 +412,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w103) model(sar) noconsta
 
 ###Model_105
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w105.dta"
+use "C:...\w105.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w105)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_105.dta"
+use "C:\...\data_105.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -423,24 +428,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w105) model(sar) noconstant  eff
 
 ###Model 11
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_113.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_113.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_115.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_115.dta", replace
+import delimited C:\...\data_113.csv, clear 
+save "C:\...\data_113.dta", replace
+import delimited C:\...\data_115.csv, clear 
+save "C:\...\data_115.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w11_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w113.dta", replace
+import delimited C:\...l\w11_3s.csv, rowrange(2) 
+save "C:\...\w113.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w11_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w115.dta", replace
+import delimited C:\...\w11_5s.csv, rowrange(2) 
+save "C:\...\w115.dta", replace
 
 ###Model_113
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w113.dta"
+use "C:\...\w113.dta"
 mkmat v1 v2 v3 v4, matrix(w113)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_113.dta"
+use "C:\...\data_113.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -454,9 +459,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w113) model(sar) noconsta
 
 ###Model_115
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w115.dta"
+use "C:\...\w115.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w115)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_115.dta"
+use "C:\...\data_115.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -470,24 +475,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w115) model(sar) noconstant  eff
 
 ###Model 12
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_123.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_123.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_126.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_126.dta", replace
+import delimited C:\...\data_123.csv, clear 
+save "C:\...\data_123.dta", replace
+import delimited C:\...\data_126.csv, clear 
+save "C:\...\data_126.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w12_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w123.dta", replace
+import delimited C:\...\w12_3s.csv, rowrange(2) 
+save "C:\...\w123.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w12_6s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w126.dta", replace
+import delimited C:\...\w12_6s.csv, rowrange(2) 
+save "C:\...\w126.dta", replace
 
 ###Model_123
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w123.dta"
+use "C:\...\w123.dta"
 mkmat v1 v2 v3 v4, matrix(w123)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_123.dta"
+use "C:\...\data_123.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -501,9 +506,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w123) model(sar) noconsta
 
 ###Model_126
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w126.dta"
+use "C:\...\w126.dta"
 mkmat v1 v2 v3 v4 v5 v6 v7, matrix(w126)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_126.dta"
+use "C:\...\data_126.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -517,24 +522,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w126) model(sar) noconstant  eff
 
 ###Model 16
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_163.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_163.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_165.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_165.dta", replace
+import delimited C:\...\data_163.csv, clear 
+save "C:\...\data_163.dta", replace
+import delimited C:\...\data_165.csv, clear 
+save "C:\...\data_165.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w16_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w163.dta", replace
+import delimited C:\...\w16_3s.csv, rowrange(2) 
+save "C:\...\w163.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w16_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w165.dta", replace
+import delimited C:\...\w16_5s.csv, rowrange(2) 
+save "C:\...\w165.dta", replace
 
 ###Model_163
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w163.dta"
+use "C:\...\w163.dta"
 mkmat v1 v2 v3 v4, matrix(w163)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_163.dta"
+use "C:\...\data_163.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -548,9 +553,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w163) model(sar) noconsta
 
 ###Model_165
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w165.dta"
+use "C:\...\w165.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w165)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_165.dta"
+use "C:\...\data_165.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -564,19 +569,19 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w165) model(sar) noconstant  eff
 
 ###Model 18
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_184.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_184.dta", replace
+import delimited C:\...\data_184.csv, clear 
+save "C:\...\data_184.dta", replace
 8
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w18_4s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w184.dta", replace
+import delimited C:\...\w18_4s.csv, rowrange(2) 
+save "C:\...\w184.dta", replace
 
 ###Model_184
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w184.dta"
+use "C:\...\w184.dta"
 mkmat v1 v2 v3 v4 v5, matrix(w184)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_184.dta"
+use "C:\...\data_184.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -590,24 +595,24 @@ xsmle lnarr lngdp lnrp lncen lnrd lngoogle,wmat(w184) model(sar) noconstant effe
 
 ###Model 19
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_194.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_194.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_196.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_196.dta", replace
+import delimited C:\...\data_194.csv, clear 
+save "C:\...\data_194.dta", replace
+import delimited C:\...\data_196.csv, clear 
+save "C:\...\data_196.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w19_4s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w194.dta", replace
+import delimited C:\...\w19_4s.csv, rowrange(2) 
+save "C:\...\w194.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w19_6s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w196.dta", replace
+import delimited C:\...\w19_6s.csv, rowrange(2) 
+save "C:\...\w196.dta", replace
 
 ###Model_194
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w194.dta"
+use "C:\...\w194.dta"
 mkmat v1 v2 v3 v4 v5, matrix(w194)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_194.dta"
+use "C:\...\data_194.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -621,9 +626,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w194) model(sar) noconsta
 
 ###Model_196
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w196.dta"
+use "C:\...\w196.dta"
 mkmat v1 v2 v3 v4 v5 v6 v7, matrix(w196)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_196.dta"
+use "C:\...\data_196.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -637,21 +642,21 @@ xsmle lnarr lngdp lnrp  lncen lnrd lngoogle,wmat(w196) model(sar) noconstant  ef
 
 ###Model 21
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_213.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_213.dta", replace
+import delimited C:\...\data_213.csv, clear 
+save "C:\...\data_213.dta", replace
 
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w21_3s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w213.dta", replace
+import delimited C:\...\w21_3s.csv, rowrange(2) 
+save "C:\...\w213.dta", replace
 
 
 
 ###Model_213
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w213.dta"
+use "C:\...\w213.dta"
 mkmat v1 v2 v3 v4, matrix(w213)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_213.dta"
+use "C:\U...\data_213.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -665,24 +670,24 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w213) model(sar) noconsta
 
 ###Model 29
 ###Data input
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_292.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_292.dta", replace
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_295.csv, clear 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_295.dta", replace
+import delimited C:\...\data_292.csv, clear 
+save "C:\...\data_292.dta", replace
+import delimited C:\...\data_295.csv, clear 
+save "C:\...\data_295.dta", replace
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w29_2s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w292.dta", replace
+import delimited C:\...\w29_2s.csv, rowrange(2) 
+save "C:\U...\w292.dta", replace
 
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w29_5s.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w295.dta", replace
+import delimited C:\U...\w29_5s.csv, rowrange(2) 
+save "C:\...\w295.dta", replace
 
 ###Model_292
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w292.dta"
+use "C:\...\w292.dta"
 mkmat v1 v2 v3, matrix(w292)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_292.dta"
+use "C:\...\data_292.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
@@ -696,9 +701,9 @@ xsmle lnarr lngdp lnrp lntube lncen lnrd lngoogle,wmat(w292) model(sar) noconsta
 
 ###Model_295
 clear all
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\w295.dta"
+use "C:\...\w295.dta"
 mkmat v1 v2 v3 v4 v5 v6, matrix(w295)
-use "C:\Users\al0045\Dropbox\Papers\Flicker\Outflow_local\data_295.dta"
+use "C:\...\data_295.dta"
 xtset id year
 gen lnarr=log(arr)
 gen lngdp=log(gdp)
