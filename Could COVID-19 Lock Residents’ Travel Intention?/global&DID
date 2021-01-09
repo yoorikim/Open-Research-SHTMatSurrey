@@ -1,17 +1,24 @@
-import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data.csv, clear
-save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data1.dta", replace
+###Title: Could COVID-19 lock residents' travel intention?
+##Authors: Liu, Anyu; Kim, Yoo Ri; O'Connell, John F
+##Last updated: 09-01-2021
+##Software: Stata v.
 
-##Prabability matrix
+
+##load and generate prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\COVID_Weibo\global_w.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\w.dta", replace
+import delimited C:\...\global_w.csv, rowrange(2) 
+save "C:\...\w.dta", replace
 
-use "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\w.dta"
+use "C:\...\w.dta"
 mkmat shanghai yunnan inner_mengolia beijing jilin sichuan tianjin ningxia anhui shandong shanxi guangdong guangxi xinjing jinagsu jiangxi hebei henan zhejiang hainan hubei hunan gansu fujian tibet guizhou liaoning chongqing shananxi qinghai heilongjiang, matrix(w)
 
-use "C:\Users\al0045\Dropbox\Papers\COVID_Weibo\data.dta"
+#load main data
+use "C:\...\data.dta"
 
+#set panel
 xtset id date
+
+#generate log
 gen lnts=log(1+weibo*sentimentscore)
 gen lntc=log(1+totalcases)
 gen lnpm25=log(pm25)
@@ -54,8 +61,9 @@ xtreg lnts em_if20 em_ii em_iii neib_hubei em_if20#neib_hubei lnpm25 lnpac lngdp
 xtreg lnts em_if20 em_ii em_iii of7_h em_if20#of7_h lnpm25 lnpac lngdpp feb mar lny weekend,re
 
 #####2019 vs 2020
-import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\Hubei1920.csv, clear
-save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\hubei1920.dta", replace
+import delimited C:\...\Hubei1920.csv, clear
+save "C:\...\hubei1920.dta", replace
+
 xtset id date
 gen lnts=log(1+weibo*sentimentscore)
 gen lnnc=log(1+confirmednewcase)
@@ -70,25 +78,26 @@ xtgls lnts em_i em_ii em_iii year em_i#year lnpm25 feb mar lny weekend
 ##Global model
 ##Prabability matrix
 clear all
-import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_w.csv, rowrange(2) 
+import delimited C:\U...\global_w.csv, rowrange(2) 
 #spmat dta spm anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang, id(id) replace
 
-save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\w.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\w.dta"
+save "C:\...\w.dta", replace
+use "C:\...\w.dta"
 mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang,matrix(w)
 
 
-import delimited C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_wx.csv, rowrange(2) 
-save "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\wx.dta", replace
-use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\wx.dta"
+import delimited C:\...\global_wx.csv, rowrange(2) 
+save "C:\...\wx.dta", replace
+
+use "C:\...\wx.dta"
 mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jinagsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjing yunnan zhejiang,matrix(wx)
 
 
-use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\global_w7.dta"
+use "C:\...\global_w7.dta"
 mkmat anhui beijing chongqing fujian gansu guangdong guangxi guizhou hainan hebei heilongjiang henan hubei hunan inner_mongalia jiangxi jilin jiangsu liaoning ningxia qinghai shananxi shandong shanghai shanxi sichuan tianjin tibet xinjiang yunnan zhejiang,matrix(wx)
 
 
-use "C:\Users\al0045\Dropbox\Papers\Covid_Weibo\data1.dta"
+use "C:\...\data1.dta"
 xtset id date
 gen lnts=log(1+weibo*sentimentscore)
 gen lnnc=log(1+confirmednewcase)
